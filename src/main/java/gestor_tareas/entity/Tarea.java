@@ -1,5 +1,7 @@
 package gestor_tareas.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import gestor_tareas.entity.enums.Estado;
 import gestor_tareas.entity.enums.Prioridad;
 import jakarta.persistence.Entity;
@@ -26,7 +28,8 @@ public class Tarea {
 	@Enumerated(EnumType.STRING)
 	private Estado estado;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "responsables_id")
+	@JoinColumn(name = "responsable_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Responsable responsable;
 	//private Proyecto proyecto;
 	

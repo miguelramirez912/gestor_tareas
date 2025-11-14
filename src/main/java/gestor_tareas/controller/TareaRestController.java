@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -94,10 +95,40 @@ public class TareaRestController {
 			
 			
 		}catch(DataAccessException e) {
-			
+			response.put("mensaje", "Error al eliminar en la base de datos");
+			response.put("error", e.getMessage().concat(e.getMostSpecificCause().toString()));
 		}
+		
+		response.put("mensaje", "La tarea fue eliminada con éxito");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	
 	//Actualizar tarea
+	@PutMapping("/tareas/{id}")
+	public ResponseEntity<?> actualizarTarea(@PathVariable Long id, @RequestBody TareaDto tareaDto){
+		Tarea tareaAActualizar = null;
+		Tarea tareaActualizada = null;
+		String response = "";
+		
+		try {
+			tareaAActualizar = this.tareaService.findById(id);
+			
+			if(tareaAActualizar == null) {
+				response = "La tarea no fue localizada en la base de datos";
+				return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
+			}
+			
+			tareaActualizada = this.tareaService.updateTarea(tareaDto, id);
+			
+		}catch(DataAccessException e) {
+			response = "Error al realizar la consulta";
+			response = response.concat(e.getMessage().concat(e.getMostSpecificCause().getLocalizedMessage()));
+			return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		response = "Tarea actualizada con exito";
+		return new ResponseEntity<Tarea>(tareaActualizada, HttpStatus.OK);
+		
+	}
 }
