@@ -1,9 +1,12 @@
 package gestor_tareas.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +19,9 @@ public class Responsable {
 	private String nombre;
 	//private Puesto puesto:
 	//private Departamento departamento;
+	@OneToMany(mappedBy = "responsable")
+	private List<Tarea> tareas;
+	
 	
 	public Responsable(Long id) {
 		super();
@@ -39,6 +45,14 @@ public class Responsable {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
 	}
 	
 	

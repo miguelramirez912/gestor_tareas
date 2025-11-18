@@ -46,7 +46,7 @@ public class TareaRestController {
 		
 		try {
 			
-			tarea = tareaService.findById(null);
+			tarea = tareaService.findById(id);
 			
 		}catch(DataAccessException e){
 			response = "Error al realizar la consulta ".concat(e.getMessage().concat(e.getMostSpecificCause().toString()));
