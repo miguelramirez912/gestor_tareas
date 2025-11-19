@@ -19,22 +19,33 @@ public class ResponsableService {
 	
 	//Consultar responsables
 	@Transactional(readOnly = true)
-	private List<Responsable> consultarResponsables(){
+	public List<Responsable> consultarResponsables(){
 		return (List<Responsable>)this.responsableRespository.findAll();
 	}
 	//Consultar responsable por id
 	@Transactional(readOnly = true)
-	private Responsable consultarResponsablePorId(Long id) {
+	public Responsable consultarResponsablePorId(Long id) {
 		return (Responsable)this.responsableRespository.findById(id).orElseGet(null);
 	}
 	//Crear responsable
 	@Transactional
-	private Responsable crearResponsable(ResponsableDto responsableDto) {
+	public Responsable crearResponsable(ResponsableDto responsableDto) {
 		Responsable nuevoResponsable = new Responsable();
 		nuevoResponsable.setNombre(responsableDto.getNombre());
 		return this.responsableRespository.save(nuevoResponsable);
 	}
 	//Actualizar responsable
+	@Transactional
+	public Responsable editarResponsable(ResponsableDto responsableDto, Long id) {
+		Responsable responsableAEditar = new Responsable();
+		responsableAEditar.setId(id);
+		responsableAEditar.setNombre(responsableDto.getNombre());
+		return this.responsableRespository.save(responsableAEditar);
+	}
 	//Eliminar responsable
+	public void eliminarResponsable(Long id) {
+		this.responsableRespository.deleteById(id);
+	}
+	
 
 }

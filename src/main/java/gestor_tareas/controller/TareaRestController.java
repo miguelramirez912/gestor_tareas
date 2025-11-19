@@ -93,6 +93,7 @@ public class TareaRestController {
 				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
+			this.tareaService.deleteTarea(id);
 			
 		}catch(DataAccessException e) {
 			response.put("mensaje", "Error al eliminar en la base de datos");
