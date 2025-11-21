@@ -31,7 +31,7 @@ public class PuestoRestController {
 	//Consultar puesto por id
 	@GetMapping("/puestos/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<?> consultarPuestoPorId(@PathVariable Long id){
+/*	public ResponseEntity<?> consultarPuestoPorId(@PathVariable Long id){
 		Puesto puestoAConsultar = null;
 		String response = "";
 		
@@ -46,7 +46,7 @@ public class PuestoRestController {
 		}catch(DataAccessException e) {
 			
 		}
-	}
+	}*/
 	//Crear puesto
 	//Actualizar
 	//Eliminar
