@@ -107,7 +107,7 @@ public class ProyectoRestController {
 		
 	}
 	//Eliminar proyecto
-	@DeleteMapping("/proyecto/{id}")
+	@DeleteMapping("/proyectos/{id}")
 	public ResponseEntity<?> eliminarProyecto(@PathVariable Long id){
 		Map<String, Object> response = new HashMap<>();
 		
