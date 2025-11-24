@@ -2,6 +2,8 @@ package gestor_tareas.dto;
 
 import java.io.Serializable;
 
+import gestor_tareas.entity.Puesto;
+
 public class ResponsableDto implements Serializable {
 
 	/**
@@ -10,6 +12,7 @@ public class ResponsableDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
+	private Puesto puesto;
 
 	public String getNombre() {
 		return nombre;
@@ -17,6 +20,14 @@ public class ResponsableDto implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Puesto getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(Puesto puesto) {
+		this.puesto = puesto;
 	}
 	
 }

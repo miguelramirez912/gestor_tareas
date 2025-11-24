@@ -1,9 +1,14 @@
 package gestor_tareas.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,12 +19,12 @@ public class Responsable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	//private Puesto puesto:
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "puesto_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Puesto puesto;
 	//private Departamento departamento;
-	//@OneToMany(mappedBy = "responsable")
-	//private List<Tarea> tareas;
-	
-	
+
 	public Responsable(Long id) {
 		super();
 		this.id = id;
@@ -44,10 +49,12 @@ public class Responsable {
 		this.nombre = nombre;
 	}
 
-	/*
-	 * public List<Tarea> getTareas() { return tareas; }
-	 * 
-	 * public void setTareas(List<Tarea> tareas) { this.tareas = tareas; }
-	 */
-	
+	public Puesto getPuesto() {
+		return puesto;
+	}
+
+	public void setPuesto(Puesto puesto) {
+		this.puesto = puesto;
+	}
+
 }

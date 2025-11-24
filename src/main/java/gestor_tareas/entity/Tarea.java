@@ -31,7 +31,10 @@ public class Tarea {
 	@JoinColumn(name = "responsable_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Responsable responsable;
-	//private Proyecto proyecto;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "proyecto_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Proyecto proyecto;
 	
 	public Long getId() {
 		return id;
@@ -62,6 +65,12 @@ public class Tarea {
 	}
 	public void setResponsable(Responsable responsable) {
 		this.responsable = responsable;
+	}
+	public Proyecto getProyecto() {
+		return proyecto;
+	}
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
 	}
 	
 	

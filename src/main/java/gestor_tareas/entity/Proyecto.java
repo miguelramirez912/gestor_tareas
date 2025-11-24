@@ -16,7 +16,15 @@ public class Proyecto {
 	private Long id;
 	@Column(name = "nombre_proyecto")
 	private String nombreProyecto;
-	//private List<Tarea> tareas;
+	
+	public Proyecto(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	public Proyecto() {
+		super();
+	}
 	
 	public Long getId() {
 		return id;

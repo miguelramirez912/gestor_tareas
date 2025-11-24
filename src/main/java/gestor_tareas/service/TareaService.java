@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gestor_tareas.dto.TareaDto;
+import gestor_tareas.entity.Proyecto;
 import gestor_tareas.entity.Responsable;
 import gestor_tareas.entity.Tarea;
 import gestor_tareas.entity.enums.Estado;
@@ -39,6 +40,7 @@ public class TareaService {
 		nuevaTareaEntity.setEstado(Enum.valueOf(Estado.class, tareaDto.getEstado()));
 		nuevaTareaEntity.setPrioridad(Enum.valueOf(Prioridad.class, tareaDto.getPrioridad()));
 		nuevaTareaEntity.setResponsable(new Responsable(tareaDto.getResponsable().getId()));
+		nuevaTareaEntity.setProyecto(new Proyecto(tareaDto.getProyecto().getId()));
 		return tareaRepository.save(nuevaTareaEntity);
 	}
 	
@@ -55,6 +57,7 @@ public class TareaService {
 		tareaEntity.setEstado(Enum.valueOf(Estado.class, tareaDto.getEstado()));
 		tareaEntity.setPrioridad(Enum.valueOf(Prioridad.class, tareaDto.getPrioridad()));
 		tareaEntity.setResponsable(new Responsable(tareaDto.getResponsable().getId()));
+		tareaEntity.setProyecto(new Proyecto(tareaDto.getProyecto().getId()));
 		return tareaRepository.save(tareaEntity);
 	}
 
