@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import gestor_tareas.dto.ResponsableDto;
+import gestor_tareas.entity.Departamento;
+import gestor_tareas.entity.Puesto;
 import gestor_tareas.entity.Responsable;
 import gestor_tareas.repository.IResponsableRepository;
 
@@ -32,6 +34,8 @@ public class ResponsableService {
 	public Responsable crearResponsable(ResponsableDto responsableDto) {
 		Responsable nuevoResponsable = new Responsable();
 		nuevoResponsable.setNombre(responsableDto.getNombre());
+		nuevoResponsable.setPuesto(new Puesto(responsableDto.getPuesto().getId()));
+		nuevoResponsable.setDepartamento(new Departamento(responsableDto.getDepartamento().getId()));
 		return this.responsableRespository.save(nuevoResponsable);
 	}
 	//Actualizar responsable
@@ -40,6 +44,8 @@ public class ResponsableService {
 		Responsable responsableAEditar = new Responsable();
 		responsableAEditar.setId(id);
 		responsableAEditar.setNombre(responsableDto.getNombre());
+		responsableAEditar.setPuesto(new Puesto(responsableDto.getPuesto().getId()));
+		responsableAEditar.setDepartamento(new Departamento(responsableDto.getDepartamento().getId()));
 		return this.responsableRespository.save(responsableAEditar);
 	}
 	//Eliminar responsable

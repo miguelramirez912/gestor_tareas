@@ -15,7 +15,17 @@ public class Departamento {
 	private Long id;
 	@Column(name = "nombre_departamento")
 	private String nombreDepartamento;
+		
+	public Departamento(Long id) {
+		super();
+		this.id = id;
+	}
 	
+	public Departamento() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

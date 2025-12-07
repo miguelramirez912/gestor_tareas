@@ -77,7 +77,7 @@ public class DepartamentoRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	//Actualizar departamento
-	@PutMapping("/departametos/{id}")
+	@PutMapping("/departamentos/{id}")
 	public ResponseEntity<?> actualizarDepartamento(@PathVariable Long id, @RequestBody DepartamentoDto departamentoDto){
 		Departamento departamentoAActualizar = null;
 		Departamento departamentoActualizado = null;

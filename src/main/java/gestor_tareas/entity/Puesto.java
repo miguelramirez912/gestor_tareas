@@ -16,7 +16,17 @@ public class Puesto {
 	private Long id;
 	@Column(name = "nombre_puesto")
 	private String nombrePuesto;
-	
+		
+	public Puesto(Long id) {
+		super();
+		this.id = id;
+	}
+		
+	public Puesto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Long getId() {
 		return id;
 	}

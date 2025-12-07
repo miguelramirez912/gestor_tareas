@@ -18,12 +18,15 @@ public class Responsable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
-	@OneToOne(fetch = FetchType.LAZY)
+	private String nombre;	
+	@OneToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "puesto_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Puesto puesto;
-	//private Departamento departamento;
+	@OneToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "departamento_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	private Departamento departamento;
 
 	public Responsable(Long id) {
 		super();
@@ -55,6 +58,14 @@ public class Responsable {
 
 	public void setPuesto(Puesto puesto) {
 		this.puesto = puesto;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
 	}
 
 }
