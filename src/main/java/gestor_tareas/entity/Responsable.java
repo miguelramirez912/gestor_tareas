@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,12 +19,12 @@ public class Responsable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;	
-	@OneToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "puesto_id", unique=false)
+	@ManyToOne(fetch = FetchType.LAZY) 
+	@JoinColumn(name = "puesto_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Puesto puesto;
 	@ManyToOne(fetch = FetchType.LAZY) 
-	@JoinColumn(name = "departamento_id", unique=false)
+	@JoinColumn(name = "departamento_id")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Departamento departamento;
 
